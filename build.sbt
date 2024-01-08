@@ -17,12 +17,13 @@ lazy val core = project
   .configs(IntegrationTest.extend(Test))
   .settings(Defaults.itSettings)
   .settings(
-    name := "akka-persistence-jdbc",
+    name := "persistence-jdbc",
     libraryDependencies ++= Dependencies.Libraries,
     mimaReportSignatureProblems := true,
     mimaPreviousArtifacts := Set(
-      organization.value %% name.value % previousStableVersion.value.getOrElse(
-        throw new Error("Unable to determine previous version for MiMa"))))
+      organization.value %% name.value % "1.1.0"))
+  .settings(ReleaseAndPublish.getSettings)
+
 
 lazy val migrator = project
   .in(file("migrator"))
